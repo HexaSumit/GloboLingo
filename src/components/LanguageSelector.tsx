@@ -1,4 +1,3 @@
-
 import { FaGlobe } from "react-icons/fa";
 
 type LanguageSelectorPageProps = {
@@ -6,7 +5,6 @@ type LanguageSelectorPageProps = {
 };
 
 const languages = [
-  { code: "en", name: "English" },
   { code: "hi", name: "Hindi" },
   { code: "ja", name: "Japanese" },
   { code: "es", name: "Spanish" },
@@ -26,6 +24,11 @@ export default function LanguageSelector({ onSelect }: LanguageSelectorPageProps
         </h1>
         <p className="mt-2 text-gray-600">
           Select a language to start learning
+        </p>
+
+        {/* English Requirement Note */}
+        <p className="mt-1 text-sm text-red-500 font-medium">
+          * Basic English knowledge is required to use this app
         </p>
 
         {/* Buttons */}
