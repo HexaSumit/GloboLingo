@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
-const navLinks: string[] = ["Home", "Learn", "About", "Login"];
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Learn", path: "/learn" },
+  { name: "About", path: "/about" },
+  { name: "Login", path: "/login" }
+];
 
 export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
@@ -20,13 +26,13 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
-                key={link}
-                href="#"
+              <Link
+                key={link.name}
+                to={link.path}
                 className="text-gray-100 hover:text-yellow-300 font-medium transition duration-200"
               >
-                {link}
-              </a>
+                {link.name}
+              </Link>
             ))}
           </div>
 
@@ -47,13 +53,13 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 px-4 py-3 space-y-2 shadow-lg">
           {navLinks.map((link) => (
-            <a
-              key={link}
-              href="#"
+             <Link
+              key={link.name}
+              to={link.path}
               className="block text-gray-100 hover:text-yellow-300 font-medium transition duration-200"
             >
-              {link}
-            </a>
+              {link.name}
+            </Link>
           ))}
         </div>
       )}
