@@ -1,10 +1,13 @@
 import { FaGlobe } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-type LanguageSelectorPageProps = {
-  onSelect: (lang: string) => void;
+type Language = {
+  code: string;
+  name: string;
 };
 
-const languages = [
+
+const languages: Language[] = [
   { code: "hi", name: "Hindi" },
   { code: "ja", name: "Japanese" },
   { code: "es", name: "Spanish" },
@@ -12,7 +15,16 @@ const languages = [
   { code: "de", name: "German" },
 ];
 
-export default function LanguageSelector({ onSelect }: LanguageSelectorPageProps) {
+export default function LanguageSelector() {
+
+  const navigate = useNavigate()
+
+  const handleSelect = (lang: string) => {
+    console.log('Language Code is:', lang);
+    //navigating to learn page 
+    navigate(`/learn?lang=${lang}`);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-purple-900 flex flex-col items-center justify-center px-4">
       {/* Card Container */}
@@ -28,7 +40,7 @@ export default function LanguageSelector({ onSelect }: LanguageSelectorPageProps
 
         {/* English Requirement Note */}
         <p className="mt-1 text-sm text-red-500 font-medium">
-          * Basic English knowledge is required to use this app
+          * English knowledge is required to use this app
         </p>
 
         {/* Buttons */}
@@ -36,8 +48,8 @@ export default function LanguageSelector({ onSelect }: LanguageSelectorPageProps
           {languages.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => onSelect(lang.code)}
-              className="px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow hover:opacity-90 hover:scale-105 transform transition"
+              onClick={() => handleSelect(lang.code)}
+              className="w-full px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold shadow hover:opacity-90 hover:scale-105 transform transition"
             >
               {lang.name}
             </button>
